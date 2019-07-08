@@ -19,12 +19,20 @@ export class TextInputComponent implements OnInit {
 
   onClick(){
     let superCalc:Calc = new Calc();
-    let output = document.getElementById("output") as InnerHTML;
     let input:string = (<HTMLInputElement>document.getElementById("gUnit")).value;
+    let output:number = superCalc.run(input);
     
+    
+    let paraInput:HTMLParagraphElement = document.createElement("p");
+    paraInput.innerHTML = ">" + input;
 
-    output.innerHTML += ("> " + input);
-    output.innerHTML += (">> " + superCalc.run(input));
+    let paraOutput:HTMLParagraphElement = document.createElement("p");
+    paraOutput.innerHTML = ">>" + output;
+
+    console.log(document.getElementById("output").inputMode);
+    document.getElementById("output").appendChild(paraInput);
+    document.getElementById("output").appendChild(paraOutput);
+    
 
   }
 
